@@ -57,7 +57,7 @@ final class PluginUtils {
      * For tests.
      * @return historyDao
      */
-    public static FileHistoryDao getHistoryDao() {
+    public static GitHistoryDao getHistoryDao() {
         final JobConfigHistory plugin = getPlugin();
         return getHistoryDao(plugin);
     }
@@ -67,11 +67,11 @@ final class PluginUtils {
      * @param plugin the plugin.
      * @return historyDao
      */
-    public static FileHistoryDao getHistoryDao(final JobConfigHistory plugin) {
+    public static GitHistoryDao getHistoryDao(final JobConfigHistory plugin) {
         return getHistoryDao(plugin, User.current());
     }
 
-    static FileHistoryDao getHistoryDao(final JobConfigHistory plugin, final User user) {
+    static GitHistoryDao getHistoryDao(final JobConfigHistory plugin, final User user) {
         final String maxHistoryEntriesAsString = plugin.getMaxHistoryEntries();
         int maxHistoryEntries = 0;
         try {
@@ -79,12 +79,10 @@ final class PluginUtils {
         } catch (NumberFormatException e) {
             maxHistoryEntries = 0;
         }
-        return new FileHistoryDao(
+        return new GitHistoryDao(
                 plugin.getConfiguredHistoryRootDir(),
                 new File(Hudson.getInstance().root.getPath()),
-                user,
-                maxHistoryEntries,
-                !plugin.getSkipDuplicateHistory());
+                user);
     }
     /**
      * Returns a {@link Date}.
