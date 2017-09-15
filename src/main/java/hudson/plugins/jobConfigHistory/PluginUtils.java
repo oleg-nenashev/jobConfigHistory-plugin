@@ -27,6 +27,8 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import hudson.Plugin;
@@ -39,6 +41,10 @@ import jenkins.model.Jenkins;
  * @author Mirko Friedenhagen
  */
 final public class PluginUtils {
+	
+	/** The logger. */
+	private static final Logger LOG = Logger
+			.getLogger(PluginUtils.class.getName());
 
 	/**
 	 * Do not instantiate.
@@ -78,7 +84,7 @@ final public class PluginUtils {
 	}
 
 	/**
-	 * For tests.
+	 * Gets the history for the current user.
 	 * 
 	 * @param plugin
 	 *            the plugin.
@@ -86,7 +92,9 @@ final public class PluginUtils {
 	 */
 	public static JobConfigHistoryStrategy getHistoryDao(
 			final JobConfigHistory plugin) {
-		return getHistoryDao(plugin, User.current());
+		User user = User.current();
+		LOG.log(Level.INFO, "Current user is: " + user);
+		return getHistoryDao(plugin, user);
 	}
 
 	/**
