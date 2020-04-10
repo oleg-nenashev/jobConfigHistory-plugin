@@ -5,11 +5,6 @@ Job Configuration History Plugin
 [![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/jobConfigHistory.svg?color=blue)](https://plugins.jenkins.io/jobConfigHistory)
 [![Contributors](https://img.shields.io/github/contributors/jenkinsci/jobConfigHistory-plugin.svg)](https://github.com/jenkinsci/jobConfigHistory-plugin/graphs/contributors)
 
-Saves copies of all job and system configurations.
-
-Older versions of this plugin may not be safe to use. Please review the following warnings before using an older version:
-* [Reflected Cross Site Scripting vulnerability](https://jenkins.io/security/advisory/2018-09-25/#SECURITY-1130)
-
 This plugin saves **a copy of the configuration file** of jobs and agents (`config.xml`) for every change made and of the system configuration (`<config-name>.xml`).
 You can also see what changes have been made by which user if you configured a security policy.
 
